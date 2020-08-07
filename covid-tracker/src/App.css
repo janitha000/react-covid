@@ -2,9 +2,20 @@
   margin : 0
 }
 
+body{
+  background: #f5f6fa;
+}
+
 .app__header{
   display: flex;
   align-items: center;
   margin-bottom: 20px;
   justify-content: space-between;
+}
+
+.app__stats {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  margin-bottom: 20px;
 }
