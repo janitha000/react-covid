@@ -48,7 +48,7 @@ const options = {
     },
 };
 
-const LineGraph = () => {
+const LineGraph = ({ caseType }) => {
     const [data, setData] = useState({})
 
     useEffect(() => {
@@ -59,11 +59,8 @@ const LineGraph = () => {
             const chartData = buildChartData(data);
             setData(chartData)
         }
-
         fetchData()
-
-
-    }, [])
+    }, [caseType])
 
     const buildChartData = (data, caseType = 'cases') => {
         const chartData = [];

@@ -7,13 +7,16 @@ import Map from './components/Map'
 import Table from './components/Table'
 import LineGraph from './components/LineGraph'
 
+import 'leaflet/dist/leaflet.css'
+
 const App = () => {
   const [loading, setLoading] = useState(true)
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('worldwide')
   const [countryInfo, setCountryInfo] = useState({})
   const [tableData, setTableData] = useState({})
-
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80, lon: -40.47 })
+  const [zoom, setZoom] = useState(3)
   useEffect(() => {
     const getCountries = async () => {
       const data = await (await fetch('https://disease.sh/v3/covid-19/countries')).json()
@@ -71,7 +74,7 @@ const App = () => {
         </div>
 
         <div className="app__map">
-          <Map />
+          <Map center={mapCenter} zoom={zoom} />
         </div>
       </div>
 
@@ -80,7 +83,11 @@ const App = () => {
           <h3>Live Cases By Country</h3>
           {!loading && <Table countries={tableData} />}
           <h3>Worldwide New Cases</h3>
-          <LineGraph />
+          <LineGraph caseType="cases" />
+          {/* <h3>Worldwide New Recoveries</h3>
+          <LineGraph caseType="recovered" />
+          <h3>Worldwide New Deaths</h3>
+          <LineGraph caseType="deaths" /> */}
         </CardContent>
       </Card>
 
