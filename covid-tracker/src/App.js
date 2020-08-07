@@ -25,7 +25,8 @@ const App = () => {
       <div className="app__header">
         <h1> COVID-19 Tracker</h1>
         <FormControl className="app_dropdown">
-          <Select variant="outlined" value="AF">
+          <Select variant="outlined" value="worldwide">
+            <MenuItem value="worldwide">Worldwide</MenuItem>
             {countries.map((country) => (
               <MenuItem value={country.value}>{country.name}</MenuItem>
             ))}
