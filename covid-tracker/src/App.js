@@ -17,6 +17,8 @@ const App = () => {
   const [tableData, setTableData] = useState({})
   const [mapCenter, setMapCenter] = useState({ lat: 34.80, lon: -40.47 })
   const [zoom, setZoom] = useState(3)
+  const [mapCountries, setMapCountries] = useState([])
+
   useEffect(() => {
     const getCountries = async () => {
       const data = await (await fetch('https://disease.sh/v3/covid-19/countries')).json()
@@ -28,6 +30,7 @@ const App = () => {
       ))
       setTableData(data)
       setCountries(countries)
+      setMapCountries(data)
       setLoading(false)
     }
 
@@ -49,6 +52,8 @@ const App = () => {
     const data = await (await fetch(url)).json()
     setCountryInfo(data)
     setCountry(countryCode)
+    setMapCenter({ lat: data.countryInfo.lat, lon: data.countryInfo.long })
+    setZoom(5)
   }
 
 
@@ -74,7 +79,7 @@ const App = () => {
         </div>
 
         <div className="app__map">
-          <Map center={mapCenter} zoom={zoom} />
+          <Map countries={mapCountries} center={mapCenter} zoom={zoom} />
         </div>
       </div>
 
