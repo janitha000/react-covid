@@ -1,3 +1,35 @@
 .infoBox{
-    /* min-width: 200px; */
+    flex: 1;
+}
+
+.infoBox:not(:last-child){
+    margin-right: 10px;
+}
+
+.infoBox__title{
+
+}
+
+.infoBox--selected{
+    border-top: 10px solid red;
+}
+
+.infoBox--green{
+    border-color: greenyellow;
+
+}
+
+.infoBox__total{
+    color: grey;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    margin-bottom: 5px ;
+}
+
+.infoBox__cases{
+    color: red;
+    font-weight: 600;
+    font-size: 1.75rem;
+    margin-bottom: 0.8rem;
+
 }

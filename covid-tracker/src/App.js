@@ -18,6 +18,7 @@ const App = () => {
   const [mapCenter, setMapCenter] = useState({ lat: 34.80, lon: -40.47 })
   const [zoom, setZoom] = useState(3)
   const [mapCountries, setMapCountries] = useState([])
+  const [caseType, setCaseType] = useState('cases')
 
   useEffect(() => {
     const getCountries = async () => {
@@ -73,13 +74,13 @@ const App = () => {
         </div>
 
         <div className="app__stats">
-          <InfoBox title="Corona Virus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} />
-          <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
-          <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
+          <InfoBox title="Corona Virus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} onClick={e => setCaseType('cases')} active={caseType === 'cases'} />
+          <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} onClick={e => setCaseType('recovered')} active={caseType === 'recovered'} />
+          <InfoBox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} onClick={e => setCaseType('deaths')} active={caseType === 'deaths'} />
         </div>
 
         <div className="app__map">
-          <Map countries={mapCountries} center={mapCenter} zoom={zoom} />
+          <Map caseType={caseType} countries={mapCountries} center={mapCenter} zoom={zoom} />
         </div>
       </div>
 
@@ -87,8 +88,8 @@ const App = () => {
         <CardContent>
           <h3>Live Cases By Country</h3>
           {!loading && <Table countries={tableData} />}
-          <h3>Worldwide New Cases</h3>
-          <LineGraph caseType="cases" />
+          <h3>Worldwide New {caseType}</h3>
+          <LineGraph caseType={caseType} />
           {/* <h3>Worldwide New Recoveries</h3>
           <LineGraph caseType="recovered" />
           <h3>Worldwide New Deaths</h3>
