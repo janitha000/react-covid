@@ -13,6 +13,21 @@ body{
 
 }
 
+.app_right{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.app_grpahHeader{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.app_dropdown{
+  background-color: white;
+}
+
 .app__header{
   display: flex;
   align-items: center;

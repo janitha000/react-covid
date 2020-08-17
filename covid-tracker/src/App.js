@@ -88,7 +88,7 @@ const App = () => {
         <CardContent>
           <h3>Live Cases By Country</h3>
           {!loading && <Table countries={tableData} />}
-          <h3>Worldwide New {caseType}</h3>
+          <h3 class="app_grpahHeader">Worldwide New {caseType}</h3>
           <LineGraph caseType={caseType} />
           {/* <h3>Worldwide New Recoveries</h3>
           <LineGraph caseType="recovered" />
